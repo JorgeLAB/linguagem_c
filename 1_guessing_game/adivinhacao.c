@@ -32,6 +32,8 @@ int main() {
 
   scanf("%d", &nivel);
 
+  printf("\n");
+
   int numerotentativas;
 
   if( nivel == 1 ) {
