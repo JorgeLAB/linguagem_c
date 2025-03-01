@@ -36,17 +36,22 @@ int main() {
 
   int numerotentativas;
 
-  if( nivel == 1 ) {
-    numerotentativas = 20;
-  } else if ( nivel == 2 ) {
-    numerotentativas = 10;
-  } else if ( nivel == 3 ) {
-    numerotentativas = 6;
+  switch(nivel) {
+    case 1:
+      numerotentativas = 20;
+      break;
+    case 2:
+      numerotentativas = 15;
+      break;
+    default:
+      numerotentativas = 6;
+      break;
   }
 
   // repetition structure
 
   for(int i = 1; i <= numerotentativas; i++) {
+    printf("Total de tentativas %d.\n", numerotentativas);
     printf("Tentativa %d.\n", tentativas);
 
     printf("Qual é o seu chute? ");
@@ -54,11 +59,9 @@ int main() {
 
     if(chute == -1 ){
       printf("\nO número secreto é %d. VOCE FALHOU \n", numerosecreto);
-
-      break;
     }
 
-    int acertou = ( chute == numerosecreto );
+    acertou = ( chute == numerosecreto );
     int maior = chute > numerosecreto;
 
     if(acertou) {
