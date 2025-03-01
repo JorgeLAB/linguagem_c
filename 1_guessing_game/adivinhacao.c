@@ -1,9 +1,6 @@
 #include <stdio.h>
 
-#define NUMERO_DE_TENTATIVAS 5
-
 int main() {
-
   // prints the game header
   printf("\t**************************************\n");
   printf("\tBem vindo ao nosso jogo de adivinhação *\n");
@@ -17,24 +14,25 @@ int main() {
   int numerosecreto = 42;
 
   int chute;
+  int ganhou = 0;
+  int tentativas = 1;
 
   // repetition structure
 
-  for(int i = 1; i <= NUMERO_DE_TENTATIVAS; i++) {
-    printf("Tentativa %d de %d\n", i, NUMERO_DE_TENTATIVAS);
+  while(ganhou == 0) {
+    printf("Tentativa %d.\n", tentativas);
 
     printf("Qual é o seu chute? ");
     scanf("%d", &chute);
 
     int acertou = ( chute == numerosecreto );
     int maior = chute > numerosecreto;
-    int menor = chute < numerosecreto;
 
     if(acertou) {
       printf("Você acertou! O número secreto é %d.\n", chute);
       printf("Jogue de novo!\n");
 
-      break;
+      ganhou = 1;
     }
 
     else if(maior) {
@@ -44,6 +42,8 @@ int main() {
     else {
       printf("Seu chute foi menor que o número secreto\n");
     }
+
+    tentativas++;
   }
 
   printf("Fim de Jogo!\n");
