@@ -25,7 +25,12 @@ int main() {
     printf("Você acertou! O número secreto é %d.\n", chute);
     printf("Jogue de novo!\n");
   } else {
-    printf("Você errou!\n");
-    printf("Tente novamente\n");
+    if(chute > numerosecreto){
+      printf("Seu chute foi maior que o número secreto\n");
+    }
+
+    if(chute < numerosecreto){
+      printf("Seu chute foi menor que o número secreto\n");
+    }
   }
 }
