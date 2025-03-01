@@ -16,25 +16,29 @@ int main() {
 
   int chute;
 
-  // interpolation with the integer
+  // repetition structure
 
-  printf("Qual é o seu chute? ");
-  scanf("%d", &chute);
+  for(int i = 1; i <= 3; i++) {
+    printf("Tentativa %d de 3\n", i);
 
-  int acertou = ( chute == numerosecreto );
+    printf("Qual é o seu chute? ");
+    scanf("%d", &chute);
 
-  if(acertou) {
-    printf("Você acertou! O número secreto é %d.\n", chute);
-    printf("Jogue de novo!\n");
-  }
-  else {
-    int maior = chute > numerosecreto;
+    int acertou = ( chute == numerosecreto );
 
-    if(maior){
-      printf("Seu chute foi maior que o número secreto\n");
+    if(acertou) {
+      printf("Você acertou! O número secreto é %d.\n", chute);
+      printf("Jogue de novo!\n");
     }
     else {
-      printf("Seu chute foi menor que o número secreto\n");
+      int maior = chute > numerosecreto;
+
+      if(maior){
+        printf("Seu chute foi maior que o número secreto\n");
+      }
+      else {
+        printf("Seu chute foi menor que o número secreto\n");
+      }
     }
   }
 }
