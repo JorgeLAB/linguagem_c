@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 int main() {
   // prints the game header
@@ -7,12 +8,17 @@ int main() {
   printf("\tBem vindo ao nosso jogo de adivinhação *\n");
   printf("\t**************************************\n");
 
+  int segundos = time(0);
+  srand(segundos);
+
+  int numerogrande = rand();
+
   /*
     Variables must have single scope. Don`t have 2 declarations of this variable numerosecreto.
     If you do this by mistake, the compilator went issue a warning and will don`t generate the executable program.
   */
 
-  int numerosecreto = 42;
+  int numerosecreto = numerogrande % 100;
 
   int chute;
   int ganhou = 0;
@@ -27,6 +33,12 @@ int main() {
     printf("Qual é o seu chute? ");
     scanf("%d", &chute);
 
+    if(chute == -1 ){
+      printf("\nO número secreto é %d. VOCE FALHOU \n", numerosecreto);
+
+      ganhou = 1;
+    }
+
     int acertou = ( chute == numerosecreto );
     int maior = chute > numerosecreto;
 
@@ -38,11 +50,10 @@ int main() {
     }
 
     else if(maior) {
-      printf("Seu chute foi maior que o número secreto\n");
+      printf("Seu chute foi MAIOR que o número secreto\n");
     }
-
     else {
-      printf("Seu chute foi menor que o número secreto\n");
+      printf("Seu chute foi MENOR que o número secreto\n");
     }
 
     tentativas++;
