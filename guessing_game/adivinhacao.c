@@ -14,6 +14,12 @@ int main() {
 
   int numerosecreto = 42;
 
+  int chute;
+
   // interpolation with the integer
-  printf("O número %d é o secreto. Não conte para ninguém!\n", numerosecreto);
+
+  printf("Qual é o seu chute? ");
+  scanf("%d", &chute);
+
+  printf("Seu chute foi %d.\n", chute);
 }
