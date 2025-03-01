@@ -47,4 +47,5 @@ int main() {
   }
 
   printf("Fim de Jogo!\n");
+  printf("Você acertou em %d tentativas.\n", tentativas - 1);
 }
