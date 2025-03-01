@@ -22,10 +22,10 @@ int main() {
   scanf("%d", &chute);
 
   if(chute == numerosecreto) {
-    printf("Você acertou! O numero secreto é %d.\n", chute)
-    printf("Jogue de novo!\n")
+    printf("Você acertou! O número secreto é %d.\n", chute);
+    printf("Jogue de novo!\n");
   } else {
-    printf("Você errou!\n")
-    printf("Tente novamente")
+    printf("Você errou!\n");
+    printf("Tente novamente\n");
   }
 }
