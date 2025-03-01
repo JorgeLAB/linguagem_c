@@ -29,6 +29,8 @@ int main() {
     if(acertou) {
       printf("Você acertou! O número secreto é %d.\n", chute);
       printf("Jogue de novo!\n");
+
+      break;
     }
     else {
       int maior = chute > numerosecreto;
@@ -41,4 +43,6 @@ int main() {
       }
     }
   }
+
+  printf("Fim de Jogo!");
 }
