@@ -16,6 +16,9 @@ int main() {
   int chute;
   int ganhou = 0;
   int tentativas = 1;
+  int pontos = 1000;
+  int novospontos = pontos * 2;
+
 
   // repetition structure
 
@@ -44,8 +47,12 @@ int main() {
     }
 
     tentativas++;
+
+    int pontosperdidos = (chute - numerosecreto) / 2;
+    pontos = pontos - pontosperdidos;
   }
 
   printf("Fim de Jogo!\n");
   printf("Você acertou em %d tentativas.\n", tentativas - 1);
+  printf("Total de pontos: %d.\n", pontos);
 }
