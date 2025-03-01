@@ -21,13 +21,30 @@ int main() {
   int numerosecreto = numerogrande % 100;
 
   int chute;
-  int ganhou = 0;
+  int acertou = 0;
   int tentativas = 1;
   double pontos = 1000;
 
+  int nivel;
+  printf("Qual o nível de dificuldade?\n");
+  printf("(1) Fácil (2) Médio (3) Difícil \n\n");
+  printf("Escolha: ");
+
+  scanf("%d", &nivel);
+
+  int numerotentativas;
+
+  if( nivel == 1 ) {
+    numerotentativas = 20;
+  } else if ( nivel == 2 ) {
+    numerotentativas = 10;
+  } else if ( nivel == 3 ) {
+    numerotentativas = 6;
+  }
+
   // repetition structure
 
-  while(ganhou == 0) {
+  for(int i = 1; i <= numerotentativas; i++) {
     printf("Tentativa %d.\n", tentativas);
 
     printf("Qual é o seu chute? ");
@@ -36,17 +53,14 @@ int main() {
     if(chute == -1 ){
       printf("\nO número secreto é %d. VOCE FALHOU \n", numerosecreto);
 
-      ganhou = 1;
+      break;
     }
 
     int acertou = ( chute == numerosecreto );
     int maior = chute > numerosecreto;
 
     if(acertou) {
-      printf("Você acertou! O número secreto é %d.\n", chute);
-      printf("Jogue de novo!\n");
-
-      ganhou = 1;
+      break;
     }
 
     else if(maior) {
@@ -63,10 +77,16 @@ int main() {
   }
 
   printf("Fim de Jogo!\n");
-  printf("Você acertou em %d tentativas.\n", tentativas - 1);
-  printf("Total de pontos: %f.\n", pontos);
+
+  if(acertou) {
+    printf("Você Ganhou!");
+    printf("Você acertou em %d tentativas.\n", tentativas - 1);
+    printf("Total de pontos: %f.\n", pontos);
+  } else {
+    printf("Você Perdeu, tente novamente!\n");
+  }
 
   // alternative
-  printf("Total de pontos: %.2f.\n", pontos);
-  printf("Total de pontos: %.1f.\n", pontos);
+  // printf("Total de pontos: %.2f.\n", pontos);
+  // printf("Total de pontos: %.1f.\n", pontos);
 }
