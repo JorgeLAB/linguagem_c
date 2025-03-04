@@ -7,6 +7,16 @@ void abertura() {
   printf("**************************\n\n");
 }
 
+// assinatura da função
+
+char chuta(char chutes[26]) {
+	char chute;
+  printf("Qual letra? ");
+  scanf(" %c", &chute);
+
+  return chute;
+}
+
 int main() {
   char palavrasecreta[20];
   sprintf(palavrasecreta, "MELANCIA");
@@ -20,32 +30,26 @@ int main() {
   abertura();
 
   do {
-      for(int i = 0; i < strlen(palavrasecreta); i++) {
-          int achou = 0;
+    for(int i = 0; i < strlen(palavrasecreta); i++) {
+      int achou = 0;
 
-          for(int j = 0; j < tentativas; j++) {
-              if(chutes[j] == palavrasecreta[i]) {
-                  achou = 1;
-                  break;
-              }
-          }
-
-          if(achou) {
-              printf("%c ", palavrasecreta[i]);
-          } else {
-              printf("_ ");
-          }
+      for(int j = 0; j < tentativas; j++) {
+        if(chutes[j] == palavrasecreta[i]) {
+          achou = 1;
+          break;
+        }
       }
-      printf("\n");
 
-      char chute;
-      printf("Qual letra? ");
-      scanf(" %c", &chute);
+      if(achou) {
+        printf("%c ", palavrasecreta[i]);
+      } else {
+        printf("_ ");
+      }
+    }
+	  printf("\n");
 
-      chutes[tentativas] = chute;
-      tentativas++;
-
-
+	  char chute = chuta(chutes);
+	  chutes[tentativas] = chute;
+	  tentativas++;
   } while (!acertou && !enforcou);
-
 }
