@@ -9,12 +9,12 @@ void abertura() {
 
 // assinatura da função
 
-char chuta(char chutes[26]) {
+void chuta(char chutes[26], int tentativas) {
 	char chute;
   printf("Qual letra? ");
   scanf(" %c", &chute);
 
-  return chute;
+  chutes[tentativas] = chute;
 }
 
 int main() {
@@ -47,9 +47,8 @@ int main() {
       }
     }
 	  printf("\n");
-
-	  char chute = chuta(chutes);
-	  chutes[tentativas] = chute;
+	  chuta(chutes, tentativas);
+	  
 	  tentativas++;
   } while (!acertou && !enforcou);
 }
