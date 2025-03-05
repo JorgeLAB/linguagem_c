@@ -1,0 +1,20 @@
+Função
+Derivada
+Integral
+Logaritmo
+Matriz
+Determinante
+Polinômio
+Limite
+Vetor
+Teorema
+Equação
+Raiz
+Produto escalar
+Sequência
+Probabilidade
+Hipotenusa
+Fatoração
+Assintota
+Binômio
+Isometria
