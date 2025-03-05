@@ -37,7 +37,41 @@ int jachutou(char letra) {
   return achou;
 }
 
+int letraexiste(char letra) {
+  for(int j = 0; j < strlen(palavrasecreta); j++) {
+    if(letra == palavrasecreta[j]) {
+      return 1;
+    }
+  }
+
+  return 0;
+}
+
+int chuteserrados() {
+  int erros = 0;
+
+  for(int i = 0; i < chutesdados; i++) {
+    if(!letraexiste(chutes[i])) {
+        erros++;
+    }
+  }
+
+  return erros;
+}
+
 void desenhaforca() {
+  int erros = chuteserrados();
+
+  printf("  _______       \n");
+  printf(" |/      |      \n");
+  printf(" |      %c%c%c  \n", (erros>=1?'(':' '), (erros>=1?'_':' '), (erros>=1?')':' '));
+  printf(" |      %c%c%c  \n", (erros>=3?'\\':' '), (erros>=2?'|':' '), (erros>=3?'/': ' '));
+  printf(" |       %c     \n", (erros>=2?'|':' '));
+  printf(" |      %c %c   \n", (erros>=4?'/':' '), (erros>=4?'\\':' '));
+  printf(" |              \n");
+  printf("_|___           \n");
+  printf("\n\n");
+
   for(int i = 0; i < strlen(palavrasecreta); i++) {
 
     int achou = jachutou(palavrasecreta[i]);
@@ -53,23 +87,7 @@ void desenhaforca() {
 }
 
 int enforcou() {
-  int erros = 0;
-
-
-  for(int i = 0; i < chutesdados; i++){
-    int existe;
-
-    for(int j = 0; j < strlen(palavrasecreta); j++){
-      if( chutes[i] == palavrasecreta[j] ) {
-        existe = 1;
-        break;
-      }
-    }
-
-    if(!existe) erros++;
-  }
-
-  return erros >= 5;
+  return chuteserrados() >= 5;
 }
 
 int acertou() {
@@ -152,5 +170,41 @@ int main() {
   } while (!acertou() && !enforcou());
 
   desenhaforca();
+  
+  if(acertou()) {
+    printf("Parabéns você Venceu!\n");
+
+    printf("       ___________      \n");
+    printf("      '._==_==_=_.'     \n");
+    printf("      .-\\:      /-.    \n");
+    printf("     | (|:.     |) |    \n");
+    printf("      '-|:.     |-'     \n");
+    printf("        \\::.    /      \n");
+    printf("         '::. .'        \n");
+    printf("           ) (          \n");
+    printf("         _.' '._        \n");
+    printf("        '-------'       \n\n");
+  } else {
+    printf("Que azar vc perdeu!\n");
+    printf("A palavra secreta era %s\n\n", palavrasecreta);
+
+    printf("    _______________         \n");
+    printf("   /               \\       \n"); 
+    printf("  /                 \\      \n");
+    printf("//                   \\/\\  \n");
+    printf("\\|   XXXX     XXXX   | /   \n");
+    printf(" |   XXXX     XXXX   |/     \n");
+    printf(" |   XXX       XXX   |      \n");
+    printf(" |                   |      \n");
+    printf(" \\__      XXX      __/     \n");
+    printf("   |\\     XXX     /|       \n");
+    printf("   | |           | |        \n");
+    printf("   | I I I I I I I |        \n");
+    printf("   |  I I I I I I  |        \n");
+    printf("   \\_             _/       \n");
+    printf("     \\_         _/         \n");
+    printf("       \\_______/           \n");
+  }
+
   adicionapalavra();
 }
