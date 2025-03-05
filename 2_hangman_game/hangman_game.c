@@ -7,18 +7,22 @@ void abertura() {
   printf("**************************\n\n");
 }
 
-// assinatura da função
+// global variables
 
-void chuta(char chutes[26], int* tentativas) {
+char palavrasecreta[20];
+char chutes[26];
+int tentativas = 0;
+
+void chuta() {
 	char chute;
   printf("Qual letra? ");
   scanf(" %c", &chute);
 
-  chutes[*tentativas] = chute;
-  (*tentativas)++;
+  chutes[tentativas] = chute;
+  (tentativas)++;
 }
 
-int jachutou(char letra, char chutes[26], int tentativas) {
+int jachutou(char letra) {
   int achou = 0;
 
   for(int j = 0; j < tentativas; j++) {
@@ -31,10 +35,10 @@ int jachutou(char letra, char chutes[26], int tentativas) {
   return achou;
 }
 
-void desenhaforca(char palavrasecreta[20], char chutes[26], int tentativas) {
+void desenhaforca() {
 	for(int i = 0; i < strlen(palavrasecreta); i++) {
 
-	  int achou = jachutou( palavrasecreta[i], chutes, tentativas);
+	  int achou = jachutou(palavrasecreta[i]);
 
 	  if(achou) {
 	    printf("%c ", palavrasecreta[i]);
@@ -47,20 +51,16 @@ void desenhaforca(char palavrasecreta[20], char chutes[26], int tentativas) {
 }
 
 int main() {
-  char palavrasecreta[20];
   sprintf(palavrasecreta, "MELANCIA");
 
   int acertou = 0;
   int enforcou = 0;
 
-  char chutes[26];
-  int tentativas = 0;
-
   abertura();
 
   do {
-    desenhaforca(palavrasecreta, chutes, tentativas);
+    desenhaforca();
 
-	  chuta(chutes, &tentativas);
+	  chuta();
   } while (!acertou && !enforcou);
 }
