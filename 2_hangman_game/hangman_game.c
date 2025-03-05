@@ -70,16 +70,27 @@ int enforcou() {
   return erros >= 5;
 }
 
+int acertou() {
+  for(int i = 0; i < strlen(palavrasecreta); i++){
+    if( !jachutou(palavrasecreta[i]) ) {
+      return 0;
+    }
+  }
+
+  return 1;
+}
+
 int main() {
   sprintf(palavrasecreta, "MELANCIA");
-
-  int acertou = 0;
 
   abertura();
 
   do {
-    desenhaforca();
 
+    desenhaforca();
     chuta();
-  } while (!acertou && !enforcou());
+
+  } while (!acertou() && !enforcou());
+
+  desenhaforca();
 }
