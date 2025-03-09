@@ -1,11 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "fogefoge.h"
 
 char** mapa;
 int linhas;
 int colunas;
 
-int main() {
+void liberamapa() {
+  for(int i = 0; i < linhas; i++) {
+  	free(mapa[i]);
+  }
+
+  free(mapa);
+}
+
+void lermapa() {
   FILE* f;
   f = fopen("mapa.txt", "r");
 
@@ -15,17 +24,25 @@ int main() {
   }
 
   fscanf(f, "%d %d", &linhas, &colunas);
-  printf("linhas %d colunas %d\n", linhas, colunas);
 
-  mapa = malloc(sizeof(char*) * linhas);
-
-  for(int i = 0; i < linhas; i++ ){
-  	mapa[i] = malloc(sizeof(char*) * (colunas + 1));
-  }
+  alocamapa();
 
   for(int i = 0; i < 5; i++) {
   	fscanf(f, "%s", mapa[i]);
   }
+
+  fclose(f);
+}
+
+void alocamapa() {
+  mapa = malloc(sizeof(char*) * linhas);
+  for(int i = 0; i < linhas; i++ ){
+  	mapa[i] = malloc(sizeof(char*) * (colunas + 1));
+  }
+}
+
+int main() {
+  lermapa();
 
   for(int i = 0; i < 5; i++){
   	for(int j = 0; j < 11; j++) {
@@ -33,12 +50,6 @@ int main() {
   	}
   	printf("\n");
   }
-
-  fclose(f);
-
-  for(int i = 0; i < linhas; i++) {
-  	free(mapa[i]);
-  }
-
-  free(mapa);
+  
+  liberamapa();
 }
