@@ -1,10 +1,31 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int main() {
-	char mapa[5][10];
+	char mapa[5][10+1];
 
-	mapa[0][0] = '|';
-	mapa[4][9] = '@';
+  FILE* f;
+  f = fopen("mapa.txt", "r");
 
-	printf("%c %c\n", mapa[0][0], mapa[4][9]);
+  if(f == 0) {
+    printf("Erro na leitura do mapa\n");
+    exit(1);
+  }
+
+  for(int i = 0; i < 5; i++) {
+  	fscanf(f, "%s", mapa[i]);
+  }
+
+  // for(int j = 0; j < 5; j++) {
+  // 	printf("%s\n", mapa[j]);
+  // }
+
+  for(int i = 0; i < 5; i++){
+  	for(int j = 0; j < 11; j++) {
+  		printf("%c", mapa[i][j]);
+  	}
+  	printf("\n");
+  }
+
+  fclose(f);
 }
