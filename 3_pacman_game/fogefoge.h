@@ -11,3 +11,5 @@ struct mapa {
   int linhas;
   int colunas;
 };
+
+typedef struct map MAPA;
