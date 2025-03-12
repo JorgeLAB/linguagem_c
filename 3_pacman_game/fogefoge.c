@@ -41,15 +41,67 @@ void alocamapa() {
   }
 }
 
+void imprimimapa() {
+  for(int i = 0; i < 5; i++){
+    for(int j = 0; j < 11; j++) {
+      printf("%c", mapa[i][j]);
+    }
+    printf("\n");
+  }
+}
+
+int acabou() {
+  return 0;
+}
+
+void move(char direcao) {
+  int x;
+  int y;
+
+  for(int i = 0; i < linhas; i++) {
+    for(int j = 0; j < colunas; j++) {
+      // encontra a posicao do pacman
+      if(mapa[i][j] == '@') {
+        x = i;
+        y = j;
+        break;
+      }
+    }
+  }
+
+  switch(direcao) {
+    case 'a':
+      mapa[x][y-1] = '@';
+      break;
+    case 'w':
+      mapa[x-1][y] = '@';
+      break;
+    case 's':
+      mapa[x+1][y] = '@';
+      break;
+    case 'd':
+      mapa[x][y+1] = '@';
+      break;
+  }
+
+  mapa[x][y] = '-';
+}
+
 int main() {
   lermapa();
+  
+  // um letra é um direcional
 
-  for(int i = 0; i < 5; i++){
-  	for(int j = 0; j < 11; j++) {
-  		printf("%c", mapa[i][j]);
-  	}
-  	printf("\n");
-  }
+  do {
+   imprimimapa();
+
+   char comando;
+   scanf(" %c", &comando);
+
+   move(comando);
+  } while(!acabou());
+
+
   
   liberamapa();
 }
