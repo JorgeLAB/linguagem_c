@@ -7,6 +7,26 @@
 MAPA m;
 POSICAO heroi;
 
+void fantasmas() {
+  MAPA copia;
+
+  copiamapa(&copia, &m);
+
+  for(int i = 0; i < m.linhas; i++) {
+    for(int j = 0; j < m.colunas; j++) {
+
+      // anda apenas para a direita
+      if(copia.matriz[i][j] == FANTASMA) {
+        if(ehvalida(&m, i, j+1) && ehvazia(&m, i, j+1)) {
+          andanomapa(&m, i, j, i, j+1);
+        }
+      }
+    }
+  }
+
+  liberamapa(&copia);
+}
+
 int acabou() {
   return 0;
 }
@@ -59,6 +79,7 @@ int main() {
   // um letra é um direcional
 
   do {
+   fantasmas();
    imprimimapa(&m);
 
    char comando;
