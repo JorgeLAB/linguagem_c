@@ -12,10 +12,10 @@ int acabou() {
 }
 
 int ehdirecao(char direcao) {
-  return direcao == 'a' ||
-         direcao == 'w' ||
-         direcao == 's' ||
-         direcao == 'd';
+  return direcao == ESQUERDA ||
+         direcao == CIMA ||
+         direcao == BAIXO ||
+         direcao == DIREITA;
 }
 
 void move(char direcao) {
@@ -26,16 +26,16 @@ void move(char direcao) {
   int proximoy = heroi.y;
 
   switch(direcao) {
-    case 'a':
+    case ESQUERDA:
       proximoy--;
       break;
-    case 'w':
+    case CIMA:
       proximox--;
       break;
-    case 's':
+    case BAIXO:
       proximox++;
       break;
-    case 'd':
+    case DIREITA:
       proximoy++;
       break;
   }
@@ -54,7 +54,7 @@ void move(char direcao) {
 
 int main() {
   lermapa(&m);
-  encontramapa(&m, &heroi, '@');
+  encontramapa(&m, &heroi, HEROI);
 
   // um letra é um direcional
 
