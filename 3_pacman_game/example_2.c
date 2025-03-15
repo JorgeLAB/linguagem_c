@@ -46,7 +46,7 @@ memória antes de liberá-la para o programador.
 Então é comum termos "lixo".
 
 Para não termos nunca o problema de ter dados sujos, 
-podemos sempre limpar nossas structs, por exemplo:
+podemos sempre limpar nossas structs, por exemplo, função limpa todos os dados em um espaço de memória.
 */
 
 int main() {
