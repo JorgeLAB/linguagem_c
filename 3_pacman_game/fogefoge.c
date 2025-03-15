@@ -1,11 +1,40 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "fogefoge.h"
 #include "mapa.h"
 
 // apelido para o tipo
 MAPA m;
 POSICAO heroi;
+
+int praondefantasmavai(int xatual, int yatual, 
+  int* xdestino, int* ydestino) {
+
+  int opcoes[4][2] = {
+    {xatual, yatual +1},
+    {xatual +1, yatual},
+    {xatual, yatual -1},
+    {xatual -1, yatual}
+  };
+
+  srand(time(0));
+
+  for(int i = 0; i < 10; i++) {
+    int posicao = rand() % 4;
+
+    if(ehvalida(&m, opcoes[posicao][0], opcoes[posicao][1]) &&
+       ehvazia(&m, opcoes[posicao][0], opcoes[posicao][1])) {
+
+      *xdestino = opcoes[posicao][0];
+      *ydestino = opcoes[posicao][1];
+
+      return 1;
+    }
+  }
+
+  return 0;
+}
 
 void fantasmas() {
   MAPA copia;
@@ -17,8 +46,13 @@ void fantasmas() {
 
       // anda apenas para a direita
       if(copia.matriz[i][j] == FANTASMA) {
-        if(ehvalida(&m, i, j+1) && ehvazia(&m, i, j+1)) {
-          andanomapa(&m, i, j, i, j+1);
+        int xdestino;
+        int ydestino;
+
+        int encontrou = praondefantasmavai(i, j, &xdestino, &ydestino);
+
+        if(encontrou){
+          andanomapa(&m, i, j, xdestino, ydestino);
         }
       }
     }
