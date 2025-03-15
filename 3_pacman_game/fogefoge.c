@@ -11,12 +11,16 @@ int acabou() {
   return 0;
 }
 
+int ehdirecao(char direcao) {
+  return direcao == 'a' ||
+         direcao == 'w' ||
+         direcao == 's' ||
+         direcao == 'd';
+}
+
 void move(char direcao) {
-  if (direcao != 'a' &&
-      direcao != 'w' &&
-      direcao != 's' &&
-      direcao != 'd')
-      return;
+  if(!ehdirecao(direcao))
+    return;
 
   int proximox = heroi.x;
   int proximoy = heroi.y;
@@ -36,21 +40,16 @@ void move(char direcao) {
       break;
   }
 
-  if(proximox >= m.linhas)
+  if(!ehvalida(&m, proximox, proximoy))
     return;
 
-  if(proximoy >= m.colunas)
+  if(!ehvazia(&m, proximox, proximoy))
     return;
 
-  if(m.matriz[proximox][proximoy] != '.' &&
-     m.matriz[proximox][proximoy] != '*')
-    return;
+  andanomapa(&m, heroi.x, heroi.y, proximox, proximoy);
 
-  m.matriz[proximox][proximoy] = '@';
-  m.matriz[heroi.x][heroi.y] = '.';
   heroi.x = proximox;
   heroi.y = proximoy;
-
 }
 
 int main() {
